@@ -27,13 +27,21 @@ gem 'bcrypt'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
-group :development, :test do
+group :development do
     # Use sqlite3 as the database for Active Record
     gem 'sqlite3'
 
     gem 'byebug',      '3.4.0'
     gem 'web-console'
     gem 'spring'
+end
+
+
+group :test do
+    gem 'minitest-reporters'
+    gem 'mini_backtrace'
+    gem 'guard'
+    gem 'guard-minitest'
 end
 
 group :production do

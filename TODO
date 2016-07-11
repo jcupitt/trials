@@ -1,0 +1,38 @@
+- off-site backups, including logs? perhaps the email on random does this
+
+- https://git.heroku.com/secure-chamber-76818.git
+
+- http://imperial.crf.nihr.ac.uk/patients-public/studies-looking-volunteers/
+
+- test suite
+
+- make sample user in DB with
+
+	$ rails console
+	irb(main):001:0> User.create(email: "jcupitt@gmail.com", institution: "Imperial", password: "xxx", password_confirmation: "xxx", role: "admin", activated: true, activated_at: Time.zone.now)
+
+- to set up heroku
+
+	heroku login
+	heroku keys:add
+	heroku create
+	git push heroku master
+	heroku run rake db:migrate
+
+  connect another machine to that heroku app
+
+  	heroku git:remote -a secure-chamber-76818
+
+  show logs
+
+	heroku logs
+
+  Update bundle, configure it not to install production gems locally
+
+	bundle install --without production
+
+  link to sendgrid
+
+	heroku addons:create sendgrid:starter
+
+
