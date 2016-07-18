@@ -86,11 +86,15 @@ footer a:hover {
 }
 
 footer ul {
-	float: right;
+	width: 100%;
 	list-style: none;
 }
 
 footer ul li {
 	float: left;
-	margin-left: 15px;
+	margin-left: -25px;
+}
+footer ul li ~ li {
+	float: right;
+	margin-right: 15px;
 }
