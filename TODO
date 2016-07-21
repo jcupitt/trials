@@ -1,5 +1,7 @@
 - make user_id 0 an admin
 
+- remove faker from prod
+
 - https://secure-chamber-76818.herokuapp.com/
 
 - http://imperial.crf.nihr.ac.uk/patients-public/studies-looking-volunteers/
