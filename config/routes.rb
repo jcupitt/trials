@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  resources :trials
-  get 'sessions/new'
+    resources :trials
+    get 'sessions/new'
 
-  get 'users/new'
+    get 'users/new'
 
-    root 'static_pages#home'
+    root 'trials#index'
 
     get '/help', to: 'static_pages#help'
     get '/about', to: 'static_pages#about'

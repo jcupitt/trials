@@ -1,0 +1,17 @@
+<% provide(:title, @trial.name) %>
+
+<h1><%= @trial.name %></h1>
+
+<p><%= @trial.long_description %></p>
+
+<% if @trial.graphic_url && @trial.graphic_url.length > 0 %>
+    <p><%= image_tag(@trial.graphic_url, alt: @trial.name, 
+                     class: "trial_graphic") %></p>
+<% end %>
+
+<%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+
+<% if is_admin? %>
+    <%= link_to "Delete trial", @trial, class: "btn btn-lg btn-secondary", 
+        method: :delete, data: { confirm: "You sure?" } %>
+<% end %>

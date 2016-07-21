@@ -52,9 +52,9 @@ class TrialsController < ApplicationController
     private
 
         def trial_params
-            params.require(:trial).permit(:name, :short_description, 
-                                          :long_description, :logo_url, 
-                                          :graphic_url)
+            params.require(:trial).permit(:name, 
+                                          :short_description, :long_description, 
+                                          :logo_url, :graphic_url)
         end
 
         def admin_user

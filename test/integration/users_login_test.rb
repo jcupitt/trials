@@ -24,13 +24,12 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
             password: 'password' 
         } }
         assert is_logged_in?
-        assert_redirected_to @user
+        assert_redirected_to trials_path
 
         follow_redirect!
-        assert_template 'users/show'
+        assert_template 'trials/index'
         assert_select "a[href=?]", login_path, count: 0
         assert_select "a[href=?]", logout_path
-        assert_select "a[href=?]", edit_user_path
 
         delete logout_path
         assert_not is_logged_in?

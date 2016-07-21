@@ -1,0 +1,20 @@
+<%= form_for(@trial) do |f| %>
+    <%= render 'shared/error_messages', object: @trial %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+
+    <%= f.label :logo_url %>
+    <%= f.url_field :logo_url, class: 'form-control', id: 'basic-url' %>
+
+    <%= f.label :short_description %>
+    <%= f.text_area :short_description, class: 'form-control' %>
+
+    <%= f.label :long_description %>
+    <%= f.text_area :long_description, class: 'form-control' %>
+
+    <%= f.label :graphic_url %>
+    <%= f.url_field :graphic_url, class: 'form-control', id: 'basic-url' %>
+
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>
