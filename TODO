@@ -33,4 +33,8 @@
 
 	heroku addons:create sendgrid:starter
 
+- reset the db
+
+	rails db:migrate:reset
+	rails db:seed
 
