@@ -102,3 +102,9 @@ Trial.create!(
 
     For further information: Please email Dr Julia Prague at menopause@imperial.ac.uk"
 )
+
+users = User.order(:created_at).drop(1).take(6)
+50.times do
+    notes = Faker::Lorem.sentence(5)
+    users.each {|user| user.volunteers.create!(notes: notes, trial_id: 1)}
+end

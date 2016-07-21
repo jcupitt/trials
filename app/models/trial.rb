@@ -1,4 +1,6 @@
 class Trial < ApplicationRecord
+    has_many :volunteers, dependent: :destroy
+
     validates :name, presence: true, length: { minimum: 2 }
     validates :short_description, presence: true, length: { minimum: 10 }
     validates :long_description, presence: true, length: { minimum: 10 }

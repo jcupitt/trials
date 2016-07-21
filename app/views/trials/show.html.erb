@@ -9,7 +9,8 @@
                      class: "trial_graphic") %></p>
 <% end %>
 
-<%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+<%= link_to "Sign up now!", volunteer_path(trial_id: @trial.id), 
+        class: "btn btn-lg btn-primary" %>
 
 <% if is_admin? %>
     <%= link_to "Delete trial", @trial, class: "btn btn-lg btn-secondary", 
