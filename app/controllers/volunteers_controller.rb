@@ -1,18 +1,34 @@
 class VolunteersController < ApplicationController
-    before_action :logged_in_user, only: [:new, :create, :destroy]
-
     def new
         @trial = Trial.find(params[:trial_id])
-        @volunteer = current_user.volunteers.build(trial: @trial)
+
+        # if we're not logged in, we need a blank user to create as well
+        @user = logged_in? ? current_user : User.new
+
+        @volunteer = @user.volunteers.build(trial: @trial)
     end
 
     def create
-        @volunteer = current_user.volunteers.build(volunteer_params)
+        @trial = Trial.find(params[:trial_id])
+
+        # if we're not logged in, create a user using the fields from the
+        # contact details part of the form
+        if logged_in?
+            @user = current_user
+        else
+            @user = User.new(user_params)
+            if @user.save
+                log_in @user
+            end
+        end
+
+        @volunteer = @user.volunteers.
+            build(volunteer_params.merge(trial: @trial))
         if @volunteer.save
             flash[:success] = "Thank you for volunteering!"
             redirect_to root_url
         else
-            render 'trials'
+            render 'new'
         end
 
     end
@@ -24,6 +40,11 @@ class VolunteersController < ApplicationController
 
             def volunteer_params
                 params.require(:volunteer).permit(:notes)
+            end
+
+            def user_params
+                params.require(:user).permit(:name, :email, 
+                                             :password, :password_confirmation)
             end
 
 end

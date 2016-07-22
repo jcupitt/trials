@@ -9,10 +9,46 @@
                      class: "trial_graphic") %></p>
 <% end %>
 
-<%= link_to "Sign up now!", volunteer_path(trial_id: @trial.id), 
-        class: "btn btn-lg btn-primary" %>
-
 <% if is_admin? %>
     <%= link_to "Delete trial", @trial, class: "btn btn-lg btn-secondary", 
         method: :delete, data: { confirm: "You sure?" } %>
 <% end %>
+
+<p>Are you interested in volunteering for this trial? Fill out your contact details below and one of our recruiters will contact you.</p>
+
+<%= form_for :volunteer, url: volunteer_path(trial_id: @trial.id) do |f| %>
+    <%= render 'shared/error_messages', object: @volunteer %>
+
+    <% if logged_in? %>
+
+        <%= f.label current_user.name %>
+
+        <%= f.label current_user.email %>
+
+        <%= f.label "need to update your contact details? click here" %>
+
+    <% else %>
+
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control' %>
+
+        <%= f.label :password %>
+        <%= f.label "pick a password to protect your contact details" %>
+        <%= f.password_field :password, class: 'form-control' %>
+
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+    <% end %>
+
+    <%= f.label :notes %>
+    <%= f.label "For example, 'phone after 6pm on 22/8/17'" %>
+    <%= f.text_area :notes, class: 'form-control' %>
+
+    <%= f.submit "Volunteer!", class: "btn btn-primary" %>
+
+<% end %>
+

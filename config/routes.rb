@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
     resources :trials
-    get 'sessions/new'
-
-    get 'users/new'
 
     root 'trials#index'
 
@@ -17,6 +14,7 @@ Rails.application.routes.draw do
     get  '/signup', to: 'users#new'
 
     get  '/volunteer', to: 'volunteers#new'
+    post  '/volunteer', to: 'volunteers#create'
 
     resources :users
 end

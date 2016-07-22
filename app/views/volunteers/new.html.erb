@@ -1,20 +1,70 @@
-<% provide(:title, 'Volunteer') %>
-<% provide(:button_text, 'Register') %>
+<% provide(:title, @trial.name) %>
 
-<h1>Volunteer</h1>
+<h1><%= @trial.name %></h1>
+
+<p><%= @trial.long_description %></p>
+
+<% if @trial.graphic_url && @trial.graphic_url.length > 0 %>
+    <p><%= image_tag(@trial.graphic_url, alt: @trial.name, 
+                     class: "trial_graphic") %></p>
+<% end %>
+
+<p>Are you interested in volunteering for this trial? Fill out your contact details below and one of our recruiters will contact you.</p>
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <%= form_for(@user) do |f| %>
-            <%= render 'shared/error_messages', object: @user %>
+        <%= form_for :volunteer, url: volunteer_path(trial_id: @trial.id) do |f| %>
+            <%= render 'shared/error_messages', object: @volunteer %>
 
-            <%= f.label "Email #{current_user.email}" %>
+            <% if logged_in? %>
+
+
+                <div class="form-control">
+                    <label>Name</label>
+                    <%= current_user.name %>
+                </div>
+
+                <div class="form-control">
+                    <label>Name</label>
+                    <%= current_user.email %>
+                </div>
+
+                <div class="row">
+                    <%= link_to "Amend contact details", edit_user_path(current_user), class: "btn btn-lg btn-secondary" %>
+                </div>
+
+            <% else %>
+
+                <%= fields_for :user do |u| %>
+
+                    <%= u.label :name %>
+                    <%= u.text_field :name, class: 'form-control' %>
+
+                    <%= u.label :email %>
+                    <%= u.email_field :email, class: 'form-control' %>
+
+                    <%= u.label :password %>
+                    <div class="hint">
+                        Pick a password to protect your contact details.
+                    </div>
+                    <%= u.password_field :password, class: 'form-control' %>
+
+                    <%= u.label :password_confirmation, "Password confirmation" %>
+                    <%= u.password_field :password_confirmation, class: 'form-control' %>
+
+                <% end %>
+
+            <% end %>
 
             <%= f.label :notes %>
+            <div class="hint">
+                For example, 'phone after 6pm on 22/8/17'.
+            </div>
             <%= f.text_area :notes, class: 'form-control' %>
 
-            <%= f.submit "Request phone interview", class: "btn btn-primary" %>
+            <%= f.submit "Volunteer!", class: "btn btn-primary" %>
+
         <% end %>
+
     </div>
 </div>
-

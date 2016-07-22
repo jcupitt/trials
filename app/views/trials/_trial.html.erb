@@ -1,12 +1,20 @@
 <li>
-    <%= link_to_image trial.logo_url, trial, 
+    <%= link_to_image trial.logo_url, volunteer_path(trial_id: trial.id), 
         alt: trial.name, class: "trial_logo" %>
 </li>
 
 <li>
-    <%= link_to trial.name, trial %>
+    <%= link_to trial.name, volunteer_path(trial_id: trial.id) %>
 </li>
 
 <li>
     <%= trial.short_description %>
 </li>
+
+<% if is_admin? %>
+    <li>
+        <%= link_to "Delete trial", @trial, class: "btn btn-lg btn-secondary", 
+            method: :delete, 
+            data: { confirm: "Delete #{trial.name} -- you sure?" } %>
+    </li>
+<% end %>

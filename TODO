@@ -1,5 +1,7 @@
 - make user_id 0 an admin
 
+- combine login/register/volunteer in one form, show at the end of trial#show
+
 - remove faker from prod
 
 - https://secure-chamber-76818.herokuapp.com/
