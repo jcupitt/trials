@@ -25,8 +25,13 @@
                 </div>
 
                 <div class="form-control">
-                    <label>Name</label>
+                    <label>Email</label>
                     <%= current_user.email %>
+                </div>
+
+                <div class="form-control">
+                    <label>Mobile</label>
+                    <%= current_user.mobile %>
                 </div>
 
                 <div class="row">
@@ -42,6 +47,9 @@
 
                     <%= u.label :email %>
                     <%= u.email_field :email, class: 'form-control' %>
+
+                    <%= u.label :mobile %>
+                    <%= u.phone_field :mobile, class: 'form-control' %>
 
                     <%= u.label :password %>
                     <div class="hint">
