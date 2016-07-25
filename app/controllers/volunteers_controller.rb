@@ -19,18 +19,28 @@ class VolunteersController < ApplicationController
             @user = User.new(user_params)
             if @user.save
                 log_in @user
+            else
+                # the 'new' view needs @volunteer ... copy the errors from 
+                # @user up into our new @volunteer
+                @volunteer = @user.volunteers.
+                    build(volunteer_params.merge(trial: @trial))
+                @user.errors.each do |attribute, message|
+                    @volunteer.errors.add(attribute, message)
+                end
+                render 'new'
             end
         end
 
-        @volunteer = @user.volunteers.
-            build(volunteer_params.merge(trial: @trial))
-        if @volunteer.save
-            flash[:success] = "Thank you for volunteering!"
-            redirect_to root_url
-        else
-            render 'new'
+        if @user.valid?
+            @volunteer = @user.volunteers.
+                build(volunteer_params.merge(trial: @trial))
+            if @volunteer.save
+                flash[:success] = "Thank you for volunteering!"
+                redirect_to root_url
+            else
+                render 'new'
+            end
         end
-
     end
 
     def destroy
