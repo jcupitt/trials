@@ -1,6 +1,7 @@
 - make user_id 0 an admin
 
-- combine login/register/volunteer in one form, show at the end of trial#show
+- if not logged in, the combined register / login form at the end of trial#show
+  errors out
 
 - remove faker from prod
 
@@ -29,7 +30,7 @@
 
 	heroku logs
 
-  Update bundle, configure it not to install production gems locally
+  update bundle, configure it not to install production gems locally
 
 	bundle install --without production
 
@@ -37,8 +38,14 @@
 
 	heroku addons:create sendgrid:starter
 
-- reset the db
+  reset the dev db
 
 	rails db:migrate:reset
 	rails db:seed
+
+  reset the db on heroku
+
+	heroku pg:reset DATABASE
+	heroku run rake db:migrate
+	heroku run rake db:seed
 
