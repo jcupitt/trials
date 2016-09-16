@@ -7,6 +7,10 @@
             <p><%= @user.email %></p>
             <p><%= @user.mobile %></p>
         </section>
+
+        <% if is_admin? %>
+          <%= link_to "Edit details", edit_user_path(@user), class: "btn btn-lg btn-secondary" %>
+        <% end %>
     </aside>
 
     <div class="col-md-8">

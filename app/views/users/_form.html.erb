@@ -16,5 +16,14 @@
     <%= f.label :password_confirmation, "Confirmation" %>
     <%= f.password_field :password_confirmation, class: 'form-control' %>
 
+    <% if is_admin? %>
+        <div class="checkbox">
+            <label>
+                <%= f.check_box :admin, class: 'form-control' %>
+                User is an admin
+            </label>
+        </div>
+    <% end %>
+
     <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>

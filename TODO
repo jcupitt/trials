@@ -1,7 +1,22 @@
-- make user_id 0 an admin
+- on create user_id 0, make an admin
 
-- if not logged in, the combined register / login form at the end of trial#show
-  errors out
+- better mobile styling
+
+- add roles: volunteer, admin, recruiter
+
+  recruiter: 
+
+  	show volunteers we've not responded to
+	for each response, have a text box for actions, eg. "tried to call on
+	tues 4pm, no answer"
+	have a box for "responded", volunteer is removed from table
+	some way to ignore timewasters?
+
+- link to email, send emails on volunteer
+
+- push notifications
+
+- use markdown for study text
 
 - remove faker from prod
 

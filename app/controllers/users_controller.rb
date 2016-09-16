@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-    before_action :logged_in_user, only: [:edit, :update, :show, :index]
+    before_action :logged_in_user, only: [:edit, :update, :show]
     before_action :correct_user, only: [:edit, :update, :show]
     before_action :admin_user, only: [:destroy, :index]
+    before_action :admin_only_admin, only: [:edit, :update]
 
     def new
         @user = User.new
@@ -47,8 +48,15 @@ class UsersController < ApplicationController
     private
 
         def user_params
-            params.require(:user).permit(:name, :email, :mobile,
+            params.require(:user).permit(:name, :email, :mobile, :admin,
                                          :password, :password_confirmation)
+        end
+
+        def admin_only_admin
+            if params[:user] && user_params[:admin] != "0" && !is_admin?
+                flash[:danger] = "Only admins can create admins" 
+                redirect_to 'edit'
+            end
         end
 
 end

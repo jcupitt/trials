@@ -10,6 +10,7 @@ petra:
         email: petra@example.com
         mobile: 234985734
         password_digest: <%= User.digest('password') %>
+        admin: false
 
 <% 40.times do |n| %>
 user_<%= n %>:
@@ -17,4 +18,5 @@ user_<%= n %>:
         email: <%= "user-#{n}@example.com" %>
         mobile: <%= "#{n}-34635635" %>
         password_digest: <%= User.digest('password') %>
+        admin: false
 <% end %>
