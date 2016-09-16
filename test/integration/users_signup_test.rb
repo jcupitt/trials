@@ -8,6 +8,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
             post users_path, params: { user: { 
                 name: "", 
                 email: "user@invalid", 
+                mobile: "1",
                 password: "foo", 
                 password_confirmation: "bar" 
             } }
@@ -21,6 +22,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
             post users_path, params: { user: { 
                 name: "Example User",
                 email: "user@example.com",
+                mobile: "23487563495687",
                 password: "password",
                 password_confirmation: "password" 
             } }
