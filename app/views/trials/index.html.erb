@@ -9,6 +9,5 @@
 <%= will_paginate if @trials.count > 30 %>
 
 <% if is_admin? %>
-    <%= link_to "New trial", new_trial_path, 
-        class: "btn btn-lg btn-secondary" %>
+    <%= link_to "New trial", new_trial_path, class: "btn btn-lg btn-primary" %>
 <% end %>

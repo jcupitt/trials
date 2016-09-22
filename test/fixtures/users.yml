@@ -3,14 +3,21 @@ john:
         email: john@example.com
         mobile: 2489534795
         password_digest: <%= User.digest('password') %>
-        admin: true
+        role: admin
 
 petra:
         name: Petra Example
         email: petra@example.com
-        mobile: 234985734
+        mobile: 897699
         password_digest: <%= User.digest('password') %>
-        admin: false
+        role: recruiter
+
+nina:
+        name: Nina Example
+        email: nina@example.com
+        mobile: 23948573406777
+        password_digest: <%= User.digest('password') %>
+        role: user
 
 <% 40.times do |n| %>
 user_<%= n %>:
@@ -18,5 +25,5 @@ user_<%= n %>:
         email: <%= "user-#{n}@example.com" %>
         mobile: <%= "#{n}-34635635" %>
         password_digest: <%= User.digest('password') %>
-        admin: false
+        role: user
 <% end %>

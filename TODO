@@ -1,10 +1,15 @@
+- have two failures, strange
+
 - on create user_id 0, make an admin
+
+- don't use btn-secondary, use primary everywhere, just change the size with
+  btn-lg etc
+
+  make sizing more consistent ... where do we use btn-lg
 
 - better mobile styling
 
-- add roles: volunteer, admin, recruiter
-
-  recruiter: 
+- recruiter: 
 
   	show volunteers we've not responded to
 	for each response, have a text box for actions, eg. "tried to call on

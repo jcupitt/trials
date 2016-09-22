@@ -48,14 +48,17 @@ class UsersController < ApplicationController
     private
 
         def user_params
-            params.require(:user).permit(:name, :email, :mobile, :admin,
+            params.require(:user).permit(:name, :email, :mobile, :role,
                                          :password, :password_confirmation)
         end
 
         def admin_only_admin
-            if params[:user] && user_params[:admin] != "0" && !is_admin?
-                flash[:danger] = "Only admins can create admins" 
-                redirect_to 'edit'
+            if params[:user] && user_params[:role] == "admin" && !is_admin?
+                flash[:danger] = "Only admins can create admins." 
+                redirect_to edit_user_url
+            elsif params[:user] && user_params[:role] == "recruiter" && is_user?
+                flash[:danger] = "Users can't create recruiters." 
+                redirect_to edit_user_url
             end
         end
 

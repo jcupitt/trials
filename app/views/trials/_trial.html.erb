@@ -13,7 +13,7 @@
 
 <% if is_admin? %>
     <li>
-        <%= link_to "Delete trial", @trial, class: "btn btn-lg btn-secondary", 
+        <%= link_to "Delete trial", @trial, class: "btn btn-sm btn-primary pull-right", 
             method: :delete, 
             data: { confirm: "Delete #{trial.name} -- you sure?" } %>
     </li>

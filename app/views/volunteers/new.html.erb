@@ -18,24 +18,28 @@
 
             <% if logged_in? %>
 
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Your contact details</h4>
+                        <div class="input-group pull-right">
+                            <%= link_to "Amend", edit_user_path(current_user), class: "btn btn-primary btn-sm pull-right" %>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td><label>Name</label></td>
+                            <td><%= current_user.name %></td>
+                        </tr>
+                        <tr>
+                            <td><label>Email</label></td>
+                            <td><%= current_user.email %></td>
+                        </tr>
+                        <tr>
+                            <td><label>Mobile</label></td>
+                            <td><%= current_user.mobile %></td>
+                        </tr>
+                    </table>
 
-                <div class="form-control">
-                    <label>Name</label>
-                    <%= current_user.name %>
-                </div>
-
-                <div class="form-control">
-                    <label>Email</label>
-                    <%= current_user.email %>
-                </div>
-
-                <div class="form-control">
-                    <label>Mobile</label>
-                    <%= current_user.mobile %>
-                </div>
-
-                <div class="row">
-                    <%= link_to "Amend contact details", edit_user_path(current_user), class: "btn btn-lg btn-secondary" %>
                 </div>
 
             <% else %>

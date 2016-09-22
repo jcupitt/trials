@@ -17,12 +17,12 @@
     <%= f.password_field :password_confirmation, class: 'form-control' %>
 
     <% if is_admin? %>
-        <div class="checkbox">
-            <label>
-                <%= f.check_box :admin, class: 'form-control' %>
-                User is an admin
-            </label>
-        </div>
+        <%= f.label :role %>
+        <% role_array = [["Please select", ""], 
+                         ["User", "user"], 
+                         ["Recruiter", "recruiter"],
+                         ["Administrator", "admin"]] %>
+        <%= f.select :role, options_for_select(role_array, @user.role), class: 'form-control' %>
     <% end %>
 
     <%= f.submit yield(:button_text), class: "btn btn-primary" %>

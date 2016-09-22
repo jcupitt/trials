@@ -3,8 +3,9 @@ require 'test_helper'
 class UsersEditTest < ActionDispatch::IntegrationTest
 
     def setup
-        @user = users(:john)
-        @nonadmin = users(:petra)
+        @admin = users(:john)
+        @recruiter = users(:petra)
+        @user = users(:nina)
     end
 
     test "unsuccessful edit" do
@@ -46,15 +47,31 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     end
 
     test "users can't create admins" do
-        log_in_as(@nonadmin)
+        log_in_as(@user)
 
-        get edit_user_path(@nonadmin)
+        get edit_user_path(@user)
         assert_template 'users/edit'
-        patch user_path(@nonadmin), params: { user: { 
+        patch user_path(@user), params: { user: { 
             name: "Foo Bar",
             email: "foo@bar.com",
             mobile: "897683475903475",
-            admin: "1",
+            role: "user",
+            password: "",
+            password_confirmation: "" 
+        } }
+        assert_template 'users/edit'
+    end
+
+    test "users can't create recruiters" do
+        log_in_as(@user)
+
+        get edit_user_path(@user)
+        assert_template 'users/edit'
+        patch user_path(@user), params: { user: { 
+            name: "Foo Bar",
+            email: "foo@bar.com",
+            mobile: "897683475903475",
+            role: "recruiter",
             password: "",
             password_confirmation: "" 
         } }
@@ -62,20 +79,37 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     end
 
     test "admins can create admins" do
-        log_in_as(@user)
+        log_in_as(@admin)
 
-        get edit_user_path(@nonadmin)
-        assert_equal false, @nonadmin.admin
+        get edit_user_path(@recruiter)
+        assert_equal "recruiter", @recruiter.role
 
         assert_template 'users/edit'
-        patch user_path(@nonadmin), params: { user: { 
-            admin: "1"
+        patch user_path(@recruiter), params: { user: { 
+            role: "admin"
         } }
         assert_not flash.empty?
-        assert_redirected_to @nonadmin
+        assert_redirected_to @recruiter
 
-        @nonadmin.reload
-        assert_equal true, @nonadmin.admin
+        @recruiter.reload
+        assert_equal "admin", @recruiter.role
+    end
+
+    test "admins can create recruiters" do
+        log_in_as(@admin)
+
+        get edit_user_path(@user)
+        assert_equal "user", @user.role
+
+        assert_template 'users/edit'
+        patch user_path(@user), params: { user: { 
+            role: "recruiter"
+        } }
+        assert_not flash.empty?
+        assert_redirected_to @user
+
+        @user.reload
+        assert_equal "recruiter", @user.role
     end
 
 end

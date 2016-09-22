@@ -2,11 +2,15 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
     def setup
-        @user = users(:petra)
+        @admin = users(:john)
+        @recruiter = users(:petra)
+        @user = users(:nina)
         @trial = trials(:one)
     end
 
     test "should be valid" do
+        assert @admin.valid?
+        assert @recruiter.valid?
         assert @user.valid?
     end
 

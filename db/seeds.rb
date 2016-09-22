@@ -4,7 +4,16 @@ User.create!(
     mobile: "2348973495",
     password: "foobar",
     password_confirmation: "foobar",
-    admin: true
+    role: "admin"
+)
+
+User.create!(
+    name: "Example Recruiter",
+    email: "recruiter@example.org",
+    mobile: "89769876",
+    password: "foobar",
+    password_confirmation: "foobar",
+    role: "recruiter"
 )
 
 99.times do |n|
@@ -16,6 +25,7 @@ User.create!(
         name: name,
         email: email,
         mobile: mobile,
+        role: "user",
         password: password,
         password_confirmation: password
     )

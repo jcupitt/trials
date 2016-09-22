@@ -10,7 +10,7 @@
 <% end %>
 
 <% if is_admin? %>
-    <%= link_to "Delete trial", @trial, class: "btn btn-lg btn-secondary", 
+    <%= link_to "Delete trial", @trial, class: "btn btn-primary", 
         method: :delete, data: { confirm: "You sure?" } %>
 <% end %>
 
