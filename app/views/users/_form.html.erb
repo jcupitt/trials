@@ -16,7 +16,7 @@
     <%= f.label :password_confirmation, "Confirmation" %>
     <%= f.password_field :password_confirmation, class: 'form-control' %>
 
-    <% if is_admin? %>
+    <% if is_admin? %> 
         <%= f.label :role %>
         <% role_array = [["Please select", ""], 
                          ["User", "user"], 

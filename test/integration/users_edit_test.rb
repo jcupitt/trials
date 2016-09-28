@@ -52,14 +52,9 @@ class UsersEditTest < ActionDispatch::IntegrationTest
         get edit_user_path(@user)
         assert_template 'users/edit'
         patch user_path(@user), params: { user: { 
-            name: "Foo Bar",
-            email: "foo@bar.com",
-            mobile: "897683475903475",
-            role: "user",
-            password: "",
-            password_confirmation: "" 
+            role: "admin"
         } }
-        assert_template 'users/edit'
+        assert_redirected_to edit_user_url
     end
 
     test "users can't create recruiters" do
@@ -68,14 +63,9 @@ class UsersEditTest < ActionDispatch::IntegrationTest
         get edit_user_path(@user)
         assert_template 'users/edit'
         patch user_path(@user), params: { user: { 
-            name: "Foo Bar",
-            email: "foo@bar.com",
-            mobile: "897683475903475",
-            role: "recruiter",
-            password: "",
-            password_confirmation: "" 
+            role: "recruiter"
         } }
-        assert_template 'users/edit'
+        assert_redirected_to edit_user_url
     end
 
     test "admins can create admins" do

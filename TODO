@@ -1,5 +1,3 @@
-- have two failures, strange
-
 - on create user_id 0, make an admin
 
 - don't use btn-secondary, use primary everywhere, just change the size with
