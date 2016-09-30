@@ -1,19 +1,12 @@
 - on create user_id 0, make an admin
 
-- don't use btn-secondary, use primary everywhere, just change the size with
-  btn-lg etc
-
-  make sizing more consistent ... where do we use btn-lg
-
-- better mobile styling
-
 - recruiter: 
 
-  	show volunteers we've not responded to
+  	show volunteering events we've not responded to
 	for each response, have a text box for actions, eg. "tried to call on
 	tues 4pm, no answer"
-	have a box for "responded", volunteer is removed from table
-	some way to ignore timewasters?
+	have a box for "responded", volunteeing event is removed from table
+	some way to ignore timewasters? show history for that user
 
 - link to email, send emails on volunteer
 

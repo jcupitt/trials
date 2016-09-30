@@ -9,72 +9,34 @@ $gray-medium-light: #eaeaea;
 	box-sizing:         border-box;
 }
 
+/*!
+ * IE10 viewport hack for Surface/desktop Windows 8 bug
+ * Copyright 2014-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+/*
+ * See the Getting Started docs for more information:
+ * http://getbootstrap.com/getting-started/#support-ie10-width
+ */
+@-ms-viewport     { width: device-width; }
+@-o-viewport      { width: device-width; }
+@viewport         { width: device-width; }
+
 /* universal */
 
 body {
 	padding-top: 60px;
 }
 
-section {
-	overflow: auto;
-}
-
-textarea {
-	resize: vertical;
-}
-
-.center {
-	text-align: center;
-	h1 {
-		margin-bottom: 10px;
-	}
-}
-
-/* typography */
-
-h1, h2, h3, h4, h5, h6 {
-	line-height: 1;
-}
-
-h1 {
-	font-size: 3em;
-	letter-spacing: -2px;
-	margin-bottom: 30px;
-	text-align: center;
-}
-
-h2 {
-	font-size: 1.2em;
-	letter-spacing: -1px;
-	margin-bottom: 30px;
-	text-align: center;
-	font-weight: normal;
-	color: $gray-light;
-}
-
-p {
-	font-size: 1.1em;
-	line-height: 1.7em;
-}
-
-/* header */
 
 #logo {
-	float: left;
-	margin-right: 10px;
-	font-size: 1.7em;
-	color: #fff;
 	text-transform: uppercase;
-	letter-spacing: -1px;
-	padding-top: 9px;
 	font-weight: bold;
 	&:hover {
 		color: white;
-		text-decoration: none;
 	}
 }
-
-/* footer */
 
 footer {
 	margin-top: 45px;
@@ -190,10 +152,26 @@ input {
 .trials {
 	list-style: none;
 	margin: 0;
+	padding: 0;
 	li {
 		overflow: auto;
 		padding: 10px 0;
 		border-bottom: 1px solid $gray-lighter;
+	}
+
+	.trial-item {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		li {
+			padding: 5px 0;
+			border-bottom: none;
+		}
+
+		.title {
+			text-transform: uppercase;
+			font-weight: bold;
+		}
 	}
 }
 
