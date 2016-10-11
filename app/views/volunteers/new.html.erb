@@ -9,74 +9,90 @@
                      class: "trial_graphic") %></p>
 <% end %>
 
-<p>Are you interested in volunteering for this trial? Fill out your contact details below and one of our recruiters will contact you.</p>
+<% if is_admin? %>
+    <%= link_to "Delete trial", @trial, class: "btn btn-primary", 
+        method: :delete, data: { confirm: "You sure?" } %>
 
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <%= form_for :volunteer, url: volunteer_path(trial_id: @trial.id) do |f| %>
-            <%= render 'shared/error_messages', object: @volunteer %>
+<% elsif is_recruiter? %>
 
-            <% if logged_in? %>
+    <p>All volunteers for this trial.</p>
 
-                <div class="panel panel-default">
-                    <div class="panel-heading clearfix">
-                        <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Your contact details</h4>
-                        <div class="input-group pull-right">
-                            <%= link_to "Amend", edit_user_path(current_user), class: "btn btn-primary btn-sm pull-right" %>
+<ul class="volunteers">
+    <%= render @volunteers %>
+</ul>
+
+<% else %>
+
+    <p>Are you interested in volunteering for this trial? Fill out your contact details below and one of our recruiters will contact you.</p>
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <%= form_for :volunteer, url: volunteer_path(trial_id: @trial.id) do |f| %>
+                <%= render 'shared/error_messages', object: @volunteer %>
+
+                <% if logged_in? %>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading clearfix">
+                            <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Your contact details</h4>
+                            <div class="input-group pull-right">
+                                <%= link_to "Amend", edit_user_path(current_user), class: "btn btn-primary btn-sm pull-right" %>
+                            </div>
                         </div>
+                        <table class="table">
+                            <tr>
+                                <td><label>Name</label></td>
+                                <td><%= current_user.name %></td>
+                            </tr>
+                            <tr>
+                                <td><label>Email</label></td>
+                                <td><%= current_user.email %></td>
+                            </tr>
+                            <tr>
+                                <td><label>Mobile</label></td>
+                                <td><%= current_user.mobile %></td>
+                            </tr>
+                        </table>
+
                     </div>
-                    <table class="table">
-                        <tr>
-                            <td><label>Name</label></td>
-                            <td><%= current_user.name %></td>
-                        </tr>
-                        <tr>
-                            <td><label>Email</label></td>
-                            <td><%= current_user.email %></td>
-                        </tr>
-                        <tr>
-                            <td><label>Mobile</label></td>
-                            <td><%= current_user.mobile %></td>
-                        </tr>
-                    </table>
 
-                </div>
+                <% else %>
 
-            <% else %>
+                    <%= fields_for :user do |u| %>
 
-                <%= fields_for :user do |u| %>
+                        <%= u.label :name %>
+                        <%= u.text_field :name, class: 'form-control' %>
 
-                    <%= u.label :name %>
-                    <%= u.text_field :name, class: 'form-control' %>
+                        <%= u.label :email %>
+                        <%= u.email_field :email, class: 'form-control' %>
 
-                    <%= u.label :email %>
-                    <%= u.email_field :email, class: 'form-control' %>
+                        <%= u.label :mobile %>
+                        <%= u.phone_field :mobile, class: 'form-control' %>
 
-                    <%= u.label :mobile %>
-                    <%= u.phone_field :mobile, class: 'form-control' %>
+                        <%= u.label :password %>
+                        <div class="hint">
+                            Pick a password to protect your contact details.
+                        </div>
+                        <%= u.password_field :password, class: 'form-control' %>
 
-                    <%= u.label :password %>
-                    <div class="hint">
-                        Pick a password to protect your contact details.
-                    </div>
-                    <%= u.password_field :password, class: 'form-control' %>
+                        <%= u.label :password_confirmation, "Password confirmation" %>
+                        <%= u.password_field :password_confirmation, class: 'form-control' %>
 
-                    <%= u.label :password_confirmation, "Password confirmation" %>
-                    <%= u.password_field :password_confirmation, class: 'form-control' %>
+                    <% end %>
 
                 <% end %>
 
+                <%= f.label :notes %>
+                <div class="hint">
+                    For example, 'phone after 6pm on 22/8/17'.
+                </div>
+                <%= f.text_area :notes, class: 'form-control' %>
+
+                <%= f.submit "Volunteer!", class: "btn btn-primary" %>
+
             <% end %>
 
-            <%= f.label :notes %>
-            <div class="hint">
-                For example, 'phone after 6pm on 22/8/17'.
-            </div>
-            <%= f.text_area :notes, class: 'form-control' %>
-
-            <%= f.submit "Volunteer!", class: "btn btn-primary" %>
-
-        <% end %>
-
+        </div>
     </div>
-</div>
+
+<% end %>
