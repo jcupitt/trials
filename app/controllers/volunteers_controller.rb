@@ -10,6 +10,11 @@ class VolunteersController < ApplicationController
         @user = logged_in? ? current_user : User.new
 
         @volunteer = @user.volunteers.build(trial: @trial)
+
+        # if we're a recruiter, we will show all volunteers for this trial
+        if @user.recruiter?
+            @volunteers = @trial.volunteers
+        end
     end
 
     def index
