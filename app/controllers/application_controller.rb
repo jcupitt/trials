@@ -23,4 +23,8 @@ class ApplicationController < ActionController::Base
             redirect_to(root_url) unless is_admin?
         end
 
+        def recruiter_user
+            redirect_to(root_url) unless is_recruiter? or is_admin?
+        end
+
 end

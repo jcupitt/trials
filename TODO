@@ -1,3 +1,27 @@
+- recruiter view
+
+	* need filtering on volunteers page
+
+		by user
+		free text search
+
+	* link to user and to trial
+	
+		- trials should show recruters all expressions on that trial
+
+		- user page already shows all expressions I think?
+
+	* notes links to page just for that expression of interest, with
+	  ability to add notes, delete etc.
+
+	* a tick box for "responded" which removes from the interest table
+
+
+
+
+
+
+
 - on create user_id 0, make an admin
 
 - don't use btn-secondary, use primary everywhere, just change the size with
@@ -14,6 +38,7 @@
 	tues 4pm, no answer"
 	have a box for "responded", volunteer is removed from table
 	some way to ignore timewasters?
+	data protection: do we need to limit recruiters to specific projects?
 
 - link to email, send emails on volunteer
 

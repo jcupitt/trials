@@ -65,7 +65,7 @@ class User < ApplicationRecord
     end
 
     def recruiter?
-         role == "recruiter"
+        role == "recruiter"
     end
 
 end

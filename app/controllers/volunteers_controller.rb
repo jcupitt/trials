@@ -1,4 +1,8 @@
 class VolunteersController < ApplicationController
+    before_action :correct_user, only: [:edit, :update, :show]
+    before_action :recruiter_user, only: [:index]
+    before_action :admin_user, only: [:destroy, :index]
+
     def new
         @trial = Trial.find(params[:trial_id])
 
@@ -6,6 +10,11 @@ class VolunteersController < ApplicationController
         @user = logged_in? ? current_user : User.new
 
         @volunteer = @user.volunteers.build(trial: @trial)
+    end
+
+    def index
+        @volunteers = Volunteer.order("updated_at").
+            paginate(:page => params[:page])
     end
 
     def create

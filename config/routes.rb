@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     get  '/volunteer', to: 'volunteers#new'
     post  '/volunteer', to: 'volunteers#create'
 
+    get  '/volunteers', to: 'volunteers#index'
+
     resources :users
 end
 
