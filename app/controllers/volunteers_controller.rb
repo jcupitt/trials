@@ -17,6 +17,10 @@ class VolunteersController < ApplicationController
         end
     end
 
+    def show
+        @volunteer = Volunteer.find(params[:id])
+    end
+
     def index
         @volunteers = Volunteer.order("updated_at").
             paginate(:page => params[:page])

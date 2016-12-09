@@ -13,11 +13,8 @@ Rails.application.routes.draw do
 
     get  '/signup', to: 'users#new'
 
-    get  '/volunteer', to: 'volunteers#new'
-    post  '/volunteer', to: 'volunteers#create'
-
-    get  '/volunteers', to: 'volunteers#index'
-
     resources :users
+
+    resources :volunteers
 end
 
