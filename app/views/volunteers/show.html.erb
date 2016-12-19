@@ -1,16 +1,41 @@
-<% provide(:title, @volunteer.created_at) %>
+<% provide(:title, 
+    "#{@volunteer.user.name} volunteered for #{@volunteer.trial.name}") %>
 
 <div class="row">
+
     <aside class="col-md-4">
         <section class="user_info">
-            <h1> <%= @volunteer.user.name %> </h1>
+            <h1> <%= link_to @volunteer.user.name, @volunteer.user %> </h1>
             <p><%= @volunteer.user.email %></p>
             <p><%= @volunteer.user.mobile %></p>
+        </section>
+
+        <section class="trial_info">
+            <h1> <%= link_to @volunteer.trial.name, @volunteer.trial %> </h1>
         </section>
     </aside>
 
     <div class="col-md-8">
-        <%= render @volunteer %>
-    </div>
+        <h3> <%= @volunteer.user.name %> volunteered for 
+                <%= @volunteer.trial.name %> </h3>
 
+        <ul class="list-unstyled">
+
+            <li>
+                <h4>Notes</h4>
+            </li>
+
+            <li>
+                <span class="notes"><%= @volunteer.notes %></span>
+            </li>
+
+            <li>
+                <small>Created <%= time_tag(@volunteer.created_at) %></small>
+            </li>
+
+            <li>
+                <small>Last updated <%= time_tag(@volunteer.updated_at) %> </small>
+            </li>
+        </div>
+    </div>
 </div>

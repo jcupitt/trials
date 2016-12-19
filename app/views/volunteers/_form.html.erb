@@ -1,0 +1,12 @@
+<%= form_for(@volunteer) do |f| %>
+    <%= render 'shared/error_messages', object: @volunteer %>
+
+    <%= f.label :notes %>
+    <div class="hint">
+        For example, 'phone after 6pm on 22/8/17'.
+    </div>
+
+    <%= f.text_area :notes, class: 'form-control' %>
+
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

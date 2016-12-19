@@ -1,0 +1,23 @@
+<% provide(:title, @volunteer.created_at) %>
+<% provide(:button_text, 'Save changes') %>
+
+<div class="row">
+
+    <aside class="col-md-4">
+        <section class="user_info">
+            <h1> <%= link_to @volunteer.user.name, @volunteer.user %> </h1>
+            <p><%= @volunteer.user.email %></p>
+            <p><%= @volunteer.user.mobile %></p>
+        </section>
+
+        <section class="trial_info">
+            <h1> <%= link_to @volunteer.trial.name, @volunteer.trial %> </h1>
+        </section>
+    </aside>
+
+    <div class="col-md-8">
+        <h1>Update expression of interest</h1>
+        <%= render 'form' %>
+    </div>
+
+</div>
