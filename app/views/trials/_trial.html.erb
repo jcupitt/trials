@@ -2,11 +2,11 @@
 
     <ul class="trial-item">
         <li class="title">
-            <%= link_to trial.name, volunteer_path(trial_id: trial.id) %>
+            <%= link_to trial.name, new_volunteer_path(trial_id: trial.id) %>
         </li>
 
         <li>
-            <%= link_to_image trial.logo_url, volunteer_path(trial_id: trial.id), 
+            <%= link_to_image trial.logo_url, new_volunteer_path(trial_id: trial.id), 
                 alt: trial.name, class: "trial_logo" %>
         </li>
 

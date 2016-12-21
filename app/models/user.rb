@@ -68,4 +68,8 @@ class User < ApplicationRecord
         role == "recruiter"
     end
 
+    def recruiter_or_admin?
+        recruiter? || admin?
+    end
+
 end

@@ -25,6 +25,13 @@
 
 
 
+- maybe disallow delete trial / delete user / delete volunteer
+
+  useful to keep for records
+
+  instead, mark as invisible
+
+  data protection will require a delete uiser details facility
 
 - on create user_id 0, make an admin
 

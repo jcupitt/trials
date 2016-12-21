@@ -41,6 +41,10 @@ module SessionsHelper
         current_user && current_user.recruiter?
     end
 
+    def is_recruiter_or_admin?
+        is_recruiter? || is_admin?
+    end
+
     def forget(user)
         user.forget
         cookies.delete(:user_id)

@@ -19,23 +19,20 @@
         <h3> <%= @volunteer.user.name %> volunteered for 
                 <%= @volunteer.trial.name %> </h3>
 
-        <ul class="list-unstyled">
-
-            <li>
-                <h4>Notes</h4>
-            </li>
-
+        <ul class="volunteers">
             <li>
                 <span class="notes"><%= @volunteer.notes %></span>
+                <span class="timestamp"> 
+                    Created <%= time_tag(@volunteer.created_at) %>
+                </span>
+                <span class="timestamp"> 
+                    Last updated <%= time_tag(@volunteer.updated_at) %>
+                </span>
             </li>
+        </ul>
 
-            <li>
-                <small>Created <%= time_tag(@volunteer.created_at) %></small>
-            </li>
-
-            <li>
-                <small>Last updated <%= time_tag(@volunteer.updated_at) %> </small>
-            </li>
-        </div>
+        <% if is_recruiter_or_admin? %>
+            <%= link_to "Edit details", edit_volunteer_path(@volunteer), class: "btn btn-sm btn-primary" %>
+        <% end %>
     </div>
 </div>

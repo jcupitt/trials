@@ -12,7 +12,7 @@ class VolunteersController < ApplicationController
         @volunteer = @user.volunteers.build(trial: @trial)
 
         # if we're a recruiter, we will show all volunteers for this trial
-        if @user.recruiter?
+        if @user.recruiter_or_admin?
             @volunteers = @trial.volunteers
         end
     end

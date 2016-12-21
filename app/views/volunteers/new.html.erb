@@ -2,6 +2,10 @@
 
 <h1><%= @trial.name %></h1>
 
+<p> <%= image_tag @trial.logo_url, alt: @trial.name, class: "trial_logo" %> </p>
+
+<p><%= @trial.short_description %></p>
+
 <p><%= @trial.long_description %></p>
 
 <% if @trial.graphic_url && @trial.graphic_url.length > 0 %>
@@ -12,8 +16,9 @@
 <% if is_admin? %>
     <%= link_to "Delete trial", @trial, class: "btn btn-primary", 
         method: :delete, data: { confirm: "You sure?" } %>
+<% end %>
 
-<% elsif is_recruiter? %>
+<% if is_recruiter_or_admin? %>
 
     <p>All volunteers for this trial.</p>
 
@@ -27,7 +32,7 @@
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <%= form_for :volunteer, url: volunteer_path(trial_id: @trial.id) do |f| %>
+            <%= form_for :volunteer, url: new_volunteer_path(trial_id: @trial.id) do |f| %>
                 <%= render 'shared/error_messages', object: @volunteer %>
 
                 <% if logged_in? %>
