@@ -1,8 +1,35 @@
 - added a proper resource for volunteers
 
-  need to adjust paths for new volunteering event, we had custom ones before
-
 - recruiter view
+
+	* users/show
+
+		shows all volunteering
+
+		link to volunteering event redirects to root
+		
+		http://localhost:3000/volunteers/1
+
+	* volunteers/new
+
+		in recruiter, shows all volunteers for that trial
+
+		needs pagination, filtering
+
+	* volunteers/show
+
+		tries to look up user from id, eg.
+
+		http://localhost:3000/volunteers/121
+
+		fails with user 121 unknow (it's volunteering event 121, not
+		user)
+
+	* trials/show
+
+		just shows trial, should show volunteers
+
+
 
 	* need filtering on volunteers page
 

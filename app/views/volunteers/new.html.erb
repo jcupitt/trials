@@ -32,7 +32,7 @@
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <%= form_for :volunteer, url: new_volunteer_path(trial_id: @trial.id) do |f| %>
+            <%= form_for :volunteer, url: volunteers_path(trial_id: @trial.id) do |f| %>
                 <%= render 'shared/error_messages', object: @volunteer %>
 
                 <% if logged_in? %>
